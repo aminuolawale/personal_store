@@ -18,7 +18,18 @@ class UserSerializer(serializers.ModelSerializer):
         depth = 1
 
 
+class UserInputSerializer(serializers.ModelSerializer):
+    address = serializers.DictField(required=False)
+    profile_picture = serializers.DictField(required=False)
+
+    class Meta:
+        model = User
+        fields = "__all__"
+        depth = 1
+
+
 class UpdateUserSerializer(serializers.Serializer):
     full_name = serializers.CharField(required=False)
     username = serializers.CharField(required=False)
     address = serializers.DictField(required=False)
+    profile_picture = serializers.DictField(required=False)

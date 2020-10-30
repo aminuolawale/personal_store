@@ -10,9 +10,12 @@ class Address(models.Model):
     state = models.CharField(max_length=20)
     country = models.CharField(max_length=20)
 
+    def __str__(self):
+        return f"{self.street}, {self.city}, {self.state}, {self.country}"
+
 
 class User(AbstractUser):
-    public_id = models.UUIDField(default=uuid.uuid4(), blank=True)
+    profile_picture = models.URLField()
     full_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=30, unique=True)
     phone = models.CharField(max_length=20)
@@ -23,10 +26,9 @@ class User(AbstractUser):
 
     def update_user(self, **kwargs):
         for k, v in kwargs.items():
-            if k == "address":
-                address = Address(**v)
-                address.save()
-                v = address
             setattr(self, k, v)
         self.save()
         return self
+
+    def __str__(self):
+        return self.full_name
