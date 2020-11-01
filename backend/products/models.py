@@ -9,6 +9,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.FloatField()
     stock = models.IntegerField()
+    main_image = models.CharField(max_length=255, blank=True)
     images = ArrayField(models.CharField(max_length=255),
                         blank=True, default=list)
 
