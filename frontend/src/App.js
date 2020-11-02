@@ -6,6 +6,7 @@ import home from "./containers/home";
 import signup from "./containers/signup";
 import login from "./containers/login";
 import productDetail from "./containers/productDetail";
+import account from "./containers/account";
 import store from "./redux/store";
 import "./sass/main.scss";
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/" component={home}></Route>
             <Route exact path="/signup" component={signup}></Route>
             <Route exact path="/login" component={login}></Route>
+            <Route exact path="/account" component={account}></Route>
           </Switch>
         </Layout>
       </BrowserRouter>

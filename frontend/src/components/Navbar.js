@@ -1,11 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { logout } from "../redux/auth/actions";
-import { useDispatch } from "react-redux";
+import { FaUser } from "react-icons/fa";
+import Dropdown from "./Dropdown";
+
 const Navbar = () => {
+  const [dropdownActive, setDropdownActive] = useState(false);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
-  const dispatch = useDispatch();
   return (
     <div className="navbar">
       <Link to="/">
@@ -15,9 +16,9 @@ const Navbar = () => {
         {loggedIn ? (
           <Fragment>
             <li className="navbar__navlinks__link">
-              <a onClick={() => dispatch(logout())} href="#">
-                Logout
-              </a>
+              <FaUser
+                onClick={() => setDropdownActive(!dropdownActive)}
+              ></FaUser>
             </li>
           </Fragment>
         ) : (
@@ -31,6 +32,7 @@ const Navbar = () => {
           </Fragment>
         )}
       </ul>
+      <Fragment>{dropdownActive ? <Dropdown></Dropdown> : ""}</Fragment>
     </div>
   );
 };

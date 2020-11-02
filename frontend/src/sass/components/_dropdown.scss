@@ -1,0 +1,19 @@
+.dropdown{
+    position:absolute;
+    color:$color-black;
+    background:$color-white;
+    right:0px;
+    top:70px;
+    box-shadow: 1px 1px 10px 2px rgba(0,0,0,.3);
+
+    &__item {
+        padding: 1em 2em;
+
+        &:hover{
+            color:$color-white;
+            background:$color-secondary;
+            cursor:pointer;
+        }
+    }
+
+}
