@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import UserThumb from "./UserThumb";
 
 const Product = ({ product }) => {
   return (
@@ -9,15 +10,10 @@ const Product = ({ product }) => {
           <img src={product.main_image} alt={product.name}></img>
         </div>
         <div className="productCard__main">
-          <div>
-            <p className="productCard__main__user">
-              <img
-                className="productCard__main__user__img"
-                src={product.owner.profile_picture}
-              ></img>
-              {product.owner.username}
-            </p>
-          </div>
+          <UserThumb
+            profile_picture={product.owner.profile_picture}
+            username={product.owner.username}
+          ></UserThumb>
           <p className="productCard__main__name">{product.name}</p>
           <p className="productCard__main__text">{product.description}</p>
           <p className="productCard__main__price">N{product.price}</p>

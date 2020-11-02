@@ -1,0 +1,14 @@
+.userThumb {
+    display:flex;
+    align-items: center;
+    margin-bottom: 10px;
+    &__img {
+        width: 3em;
+        height: 3sem;
+        margin-right: 10px;
+    }
+    &__text {
+        font-size: $mid-font;
+        font-style: italic;
+    }
+}

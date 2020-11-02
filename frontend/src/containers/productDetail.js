@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import UserThumb from "../components/UserThumb";
 
 const ProductDetail = (props) => {
   const [product, setProduct] = useState();
@@ -45,6 +46,10 @@ const ProductDetail = (props) => {
       </div>
       <div className="productDetail__right">
         <p className="productDetail__right__name">{product.name}</p>
+        <UserThumb
+          profile_picture={product.owner.profile_picture}
+          username={product.owner.username}
+        ></UserThumb>
         <p className="productDetail__right__text">{product.description}</p>
         <p className="productDetail__right__price">N{product.price}</p>
         <p className="productDetail__right__stock">In Stock: {product.stock}</p>

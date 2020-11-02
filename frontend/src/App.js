@@ -9,8 +9,8 @@ import "./sass/main.scss";
 function App() {
   return (
     <Provider store={store}>
-      <Layout>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Layout>
           <Switch>
             <Route exact path="/public_products" component={products}></Route>
             <Route
@@ -20,8 +20,8 @@ function App() {
             ></Route>
             <Route exact path="/" component={home}></Route>
           </Switch>
-        </BrowserRouter>
-      </Layout>
+        </Layout>
+      </BrowserRouter>
     </Provider>
   );
 }

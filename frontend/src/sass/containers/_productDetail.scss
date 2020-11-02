@@ -3,7 +3,6 @@
     height: 500px;
     &__left {
         width:60%;
-
         &__sub{
             height: 6em;
             display:grid;
@@ -21,9 +20,10 @@
         padding: 0 0 0 50px;
         &__name {
             font-size: $big-font;
-            margin-bottom: 20px;
+            // margin-bottom: 20px;
         }
         &__text {
+            margin-top: 20px;
             font-size: $small-font;
             margin-bottom: 20px;
         }
