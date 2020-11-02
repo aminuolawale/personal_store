@@ -52,8 +52,7 @@ const ProductDetail = (props) => {
         ></UserThumb>
         <p className="productDetail__right__text">{product.description}</p>
         <p className="productDetail__right__price">N{product.price}</p>
-        <p className="productDetail__right__stock">In Stock: {product.stock}</p>
-        <p>{product.owner.username}</p>
+        <p className="productDetail__right__stock">{product.stock} left</p>
       </div>
     </div>
   ) : (

@@ -1,0 +1,15 @@
+.button {
+    background:$color-secondary;
+    &--sm{
+        font-size: $small-font;
+        padding:.2em;
+    }
+    &--mid{
+        font-size: $mid-font;
+        padding:.5em;
+    }
+    &--big {
+        font-size: $lg-font;
+        padding:1em;
+    }
+}

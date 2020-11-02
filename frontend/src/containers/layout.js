@@ -4,8 +4,10 @@ import Navbar from "../components/Navbar";
 const Layout = (props) => {
   return (
     <div className="layout">
-      <Navbar></Navbar>
-      <div className="layout__content">{props.children}</div>
+      <div className="layout__content">
+        <Navbar></Navbar>
+        {props.children}
+      </div>
     </div>
   );
 };

@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 @import "./abstracts/variables";
 @import "./base/base";
 @import "./components/productCard";
 @import "./components/navbar";
 @import "./components/userThumb";
+@import "./components/button";
 @import "./containers/productsGrid";
 @import "./containers/layout";
 @import "./containers/productDetail";
+@import "./containers/home";
