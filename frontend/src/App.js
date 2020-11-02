@@ -3,6 +3,8 @@ import products from "./containers/products";
 import { Provider } from "react-redux";
 import Layout from "./containers/layout";
 import home from "./containers/home";
+import signup from "./containers/signup";
+import login from "./containers/login";
 import productDetail from "./containers/productDetail";
 import store from "./redux/store";
 import "./sass/main.scss";
@@ -19,6 +21,8 @@ function App() {
               component={productDetail}
             ></Route>
             <Route exact path="/" component={home}></Route>
+            <Route exact path="/signup" component={signup}></Route>
+            <Route exact path="/login" component={login}></Route>
           </Switch>
         </Layout>
       </BrowserRouter>

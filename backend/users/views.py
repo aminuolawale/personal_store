@@ -29,8 +29,9 @@ class SignupView(generics.CreateAPIView):
             address = Address.objects.create(**address)
             data.update(address=address)
         user = user_model.objects.create_user(**data)
-        address.owner = user.id
-        address.save()
+        if address:
+            address.owner = user.id
+            address.save()
         serializer = UserSerializer(user)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

@@ -7,7 +7,9 @@ const Products = () => {
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(fetchPublicProducts()), []);
-  const publicProducts = useSelector((state) => state.publicProducts);
+  const publicProducts = useSelector(
+    (state) => state.publicProducts.publicProducts
+  );
   const productsDisplay = publicProducts.map((product) => (
     <Product key={product.id} product={product}></Product>
   ));
