@@ -1,0 +1,40 @@
+.productDetail {
+    display:flex;
+    height: 500px;
+    &__left {
+        width:60%;
+
+        &__sub{
+            height: 6em;
+            display:grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-gap: 10px;
+            &__img {
+                &--selected{
+                    border: 1px solid red;
+                }
+            }
+        }
+    }
+    &__right {
+        width: 40%;
+        padding: 0 0 0 50px;
+        &__name {
+            font-size: $big-font;
+            margin-bottom: 20px;
+        }
+        &__text {
+            font-size: $small-font;
+            margin-bottom: 20px;
+        }
+        &__price {
+            font-size: $big-font;
+            color:green;
+            margin-bottom: 20px;
+        }
+        &__stock {
+            font-size: $small-font;
+        }
+      
+    }
+}

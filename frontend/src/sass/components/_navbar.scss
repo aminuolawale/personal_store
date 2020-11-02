@@ -1,0 +1,23 @@
+.navbar {
+    height: 80px;
+    color: $color-white;
+    background:$color-primary;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 100px;
+    &__header {
+        font-size: $big-font;
+        margin-left: 40px;
+    }
+
+    &__navlinks {
+        display:flex;
+        justify-content: space-between;
+
+        &__link {
+            margin-right: 40px;
+            font-size: $mid-font;
+        }
+    }
+}
