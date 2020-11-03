@@ -34,13 +34,6 @@
                 }
             }
         }
-        &__extra {
-            margin-top: 50px;
-            &__title {
-                font-size: $mid-font;
-                margin-bottom: 20px;
-            }
-        }
 
         &__actions {
             width:80%;
@@ -50,5 +43,20 @@
             color:$color-white;
         }
     
+    }
+    &__extra {
+        margin-top: 50px;
+        &__heading{
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            &__title {
+                font-size: $mid-font;
+                margin-bottom: 20px;
+            }
+            &>a{
+                color:$color-secondary;
+            }
+        }
     }
 }

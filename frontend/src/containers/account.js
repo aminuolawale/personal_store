@@ -41,8 +41,11 @@ const Account = () => {
           </Link>
         </div>
       </div>
-      <div className="account__main__extra">
-        <p className="account__main__extra__title">My Products</p>
+      <div className="account__extra">
+        <div className="account__extra__heading">
+          <p className="account__extra__heading__title">My Products</p>
+          <Link to="/my_products">View all ></Link>
+        </div>
         <Products
           limit={5}
           fetchProducts={fetchMyProducts}

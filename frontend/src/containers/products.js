@@ -1,23 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPublicProducts } from "../redux/products/actions";
 import Product from "../components/Product";
 
 const Products = ({ limit, fetchProducts, view = "public" }) => {
+  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   fetchProducts = fetchProducts || fetchPublicProducts;
   useEffect(() => dispatch(fetchProducts()), []);
-  let products = useSelector((state) =>
+  let productsData = useSelector((state) =>
     view === "public"
       ? state.publicProducts.publicProducts
       : state.products.products
   );
-  console.log(products);
-  products = limit ? products.splice(0, limit) : products;
+
+  useEffect(() => {
+    productsData = limit ? productsData.splice(0, limit) : productsData;
+    setProducts(productsData);
+  }, [productsData]);
   const productsDisplay = products.map((product) => (
     <Product key={product.id} product={product}></Product>
   ));
-  console.log(productsDisplay);
   return <div className="productsGrid">{productsDisplay}</div>;
 };
 

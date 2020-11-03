@@ -17,6 +17,7 @@ function App() {
         <Layout>
           <Switch>
             <Route exact path="/public_products" component={products}></Route>
+            <Route exact path="/my_products" component={products}></Route>
             <Route
               exact
               path="/public_products/:id"

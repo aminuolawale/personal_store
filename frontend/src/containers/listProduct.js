@@ -9,7 +9,7 @@ const ListProduct = () => {
     main_image: "",
     images: [],
   });
-
+  const [imageFieldCount, setImageFieldCount] = useState(3);
   const { name, description, price, stock, main_image, images } = formData;
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,17 +76,20 @@ const ListProduct = () => {
           onChange={(e) => handleChange(e)}
         ></input>
       </div>
-      <div>
-        <label htmlFor="images">Images</label>
-        <input
-          type="file"
-          required
-          id="images"
-          name="images"
-          value={images}
-          onChange={(e) => handleChange(e)}
-        ></input>
-      </div>
+      <label htmlFor={`image`}>Images</label>
+      {[...Array(imageFieldCount).keys()].map((i) => (
+        <div>
+          <input
+            type="file"
+            required
+            id={`image${i}`}
+            name={`image${i}`}
+            value={images}
+            onChange={(e) => handleChange(e)}
+          ></input>
+        </div>
+      ))}
+
       <button type="submit">Upload</button>
     </form>
   );
