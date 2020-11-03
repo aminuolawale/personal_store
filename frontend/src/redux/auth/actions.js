@@ -135,6 +135,7 @@ const getAccount = () => {
         }
       );
       const data = response.data;
+      console.log("the data", data);
       dispatch(getAccountSuccess(data));
     } catch (err) {
       console.log(err.message);
@@ -143,4 +144,4 @@ const getAccount = () => {
   };
 };
 
-export { signup, login, logout };
+export { signup, login, logout, getAccount };

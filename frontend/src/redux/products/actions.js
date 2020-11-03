@@ -2,6 +2,9 @@ import {
   FETCH_PUBLIC_PRODUCTS_REQUEST,
   FETCH_PUBLIC_PRODUCTS_SUCCESS,
   FETCH_PUBLIC_PRODUCTS_FAILURE,
+  FETCH_MY_PRODUCTS_REQUEST,
+  FETCH_MY_PRODUCTS_SUCCESS,
+  FETCH_MY_PRODUCTS_FAILURE,
 } from "./types";
 import axios from "axios";
 
@@ -26,7 +29,7 @@ const fetchPublicProductsFailure = (error) => {
 };
 
 const fetchPublicProducts = () => {
-  return async (dispatch) => { 
+  return async (dispatch) => {
     dispatch(fetchPublicProductsRequest());
     try {
       const response = await axios.get(

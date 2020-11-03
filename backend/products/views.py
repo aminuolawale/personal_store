@@ -7,6 +7,7 @@ from utils.utils import upload_images
 
 
 class ProductsView(viewsets.ModelViewSet):
+    serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticated]
     queryset = Product.objects.all()
 

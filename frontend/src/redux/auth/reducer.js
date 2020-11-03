@@ -6,10 +6,13 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
+  GET_ACCOUNT_REQUEST,
+  GET_ACCOUNT_SUCCESS,
+  GET_ACCOUNT_FAILURE,
 } from "./types";
 
 const initialState = {
-  user: null,
+  account: null,
   loggedIn: localStorage.getItem("token") ? true : false,
   loading: false,
   error: "",
@@ -63,6 +66,26 @@ const authReducer = (state = initialState, action) => {
         user: null,
         loggedIn: false,
         signedUp: false,
+      };
+    case GET_ACCOUNT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case GET_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        account: action.payload,
+        error: "",
+      };
+    case GET_ACCOUNT_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        account: null,
       };
     default:
       return state;
