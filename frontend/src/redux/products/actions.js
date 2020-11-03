@@ -26,7 +26,7 @@ const fetchPublicProductsFailure = (error) => {
 };
 
 const fetchPublicProducts = () => {
-  return async (dispatch) => {
+  return async (dispatch) => { 
     dispatch(fetchPublicProductsRequest());
     try {
       const response = await axios.get(

@@ -1,19 +1,29 @@
 .dropdown{
-    position:absolute;
-    color:$color-black;
-    background:$color-white;
-    right:0px;
-    top:70px;
-    box-shadow: 1px 1px 10px 2px rgba(0,0,0,.3);
+    z-index: 4;
 
-    &__item {
-        padding: 1em 2em;
-
+    &__toggler {
         &:hover{
-            color:$color-white;
-            background:$color-secondary;
             cursor:pointer;
         }
     }
+    &__list {
+        position:absolute;
+        color:$color-black;
+        background:$color-white;
+        right:0px;
+        top:70px;
+        box-shadow: 1px 1px 10px 2px rgba(0,0,0,.3);
+
+        &__item {
+            padding: 1em 2em;
+            font-size: $xsm-font;
+            &:hover{
+                color:$color-white;
+                background:$color-secondary;
+                cursor:pointer;
+            }
+        }
+    }
+
 
 }

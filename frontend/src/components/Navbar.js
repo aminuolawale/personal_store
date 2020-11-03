@@ -1,11 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaUser } from "react-icons/fa";
 import Dropdown from "./Dropdown";
 
 const Navbar = () => {
-  const [dropdownActive, setDropdownActive] = useState(false);
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   return (
     <div className="navbar">
@@ -16,9 +14,7 @@ const Navbar = () => {
         {loggedIn ? (
           <Fragment>
             <li className="navbar__navlinks__link">
-              <FaUser
-                onClick={() => setDropdownActive(!dropdownActive)}
-              ></FaUser>
+              <Dropdown></Dropdown>
             </li>
           </Fragment>
         ) : (
@@ -32,7 +28,6 @@ const Navbar = () => {
           </Fragment>
         )}
       </ul>
-      <Fragment>{dropdownActive ? <Dropdown></Dropdown> : ""}</Fragment>
     </div>
   );
 };

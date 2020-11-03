@@ -6,6 +6,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
+  GET_ACCOUNT_REQUEST,
+  GET_ACCOUNT_SUCCESS,
+  GET_ACCOUNT_FAILURE,
 } from "./types";
 import axios from "axios";
 
@@ -53,6 +56,26 @@ const logoutRequest = () => {
   };
 };
 
+const getAccountRequest = () => {
+  return {
+    type: GET_ACCOUNT_REQUEST,
+  };
+};
+
+const getAccountSuccess = (account) => {
+  return {
+    type: GET_ACCOUNT_SUCCESS,
+    payload: account,
+  };
+};
+
+const getAccountFailure = (error) => {
+  return {
+    type: GET_ACCOUNT_FAILURE,
+    payload: error,
+  };
+};
+
 const signup = (requestData) => {
   return async (dispatch) => {
     const url = "http://localhost:8000/api/users/signup/";
@@ -63,7 +86,7 @@ const signup = (requestData) => {
       });
       const data = response.data;
       console.log("the response data", data);
-      dispatch(signupSuccess());
+      dispatch(signupSuccess(data));
     } catch (err) {
       console.log(err.message);
       dispatch(signupFailure(err.message));
@@ -95,6 +118,28 @@ const logout = () => {
     console.log("loolkajdjl");
     dispatch(logoutRequest());
     localStorage.setItem("token", null);
+  };
+};
+
+const getAccount = () => {
+  return async (dispatch) => {
+    dispatch(getAccountRequest());
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/users/profile/",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      const data = response.data;
+      dispatch(getAccountSuccess(data));
+    } catch (err) {
+      console.log(err.message);
+      dispatch(getAccountFailure(err.message));
+    }
   };
 };
 
