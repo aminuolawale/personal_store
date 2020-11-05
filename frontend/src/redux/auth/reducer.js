@@ -10,30 +10,10 @@ import {
   GET_ACCOUNT_SUCCESS,
   GET_ACCOUNT_FAILURE,
 } from "./types";
-import axios from "axios";
-
-const checkLogin = async () => {
-  try {
-    const response = await axios.get(
-      "http://localhost:8000/api/users/profile/",
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
-    console.log(response.data);
-    return true;
-  } catch (err) {
-    console.log(err.message);
-    return false;
-  }
-};
 
 const initialState = {
   account: null,
-  loggedIn: checkLogin(),
+  loggedIn: localStorage.getItem("token") ? true : false,
   loading: false,
   error: "",
   signedUp: false,
@@ -78,6 +58,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+        loggedIn: false,
       };
     case LOGOUT:
       return {
@@ -99,6 +80,7 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         account: action.payload,
         error: "",
+        loggedIn: true,
       };
     case GET_ACCOUNT_FAILURE:
       localStorage.setItem("token", null);

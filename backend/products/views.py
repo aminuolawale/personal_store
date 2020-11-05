@@ -12,6 +12,7 @@ class ProductsView(viewsets.ModelViewSet):
     queryset = Product.objects.all()
 
     def create(self, request, *args, **kwargs):
+        print("the request data", request.data)
         serializer = ProductInputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)

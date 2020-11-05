@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import Button from "../components/Button";
+import { uploadProduct } from "../redux/myProducts/actions";
+import { useDispatch } from "react-redux";
 const ListProduct = () => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -9,15 +12,44 @@ const ListProduct = () => {
     main_image: "",
     images: [],
   });
-  const [imageFieldCount, setImageFieldCount] = useState(3);
+  const [imageFieldsCount, setImageFieldsCount] = useState(0);
   const { name, description, price, stock, main_image, images } = formData;
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    let reader = new FileReader();
+    reader.readAsDataURL(formData.main_image);
+    reader.onload = function () {
+      let dd = reader.result.split(",");
+      const d0 = dd[0];
+      const d1 = dd[1];
+      let r = d0.split(":")[1];
+      r = r.split(";")[0];
+      console.log(r);
+      formData["main_image"] = { type: r, data: d1 };
+      dispatch(uploadProduct(formData));
+    };
+    reader.onerror = function (error) {
+      console.log("Error: ", error);
+    };
   };
   const handleChange = (e) => {
     e.preventDefault();
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleAddNew = (e) => {
+    setImageFieldsCount(imageFieldsCount + 1);
+  };
+
+  const remove = (e) => {
+    setImageFieldsCount(imageFieldsCount - 1);
+  };
+  const handleMainImageChange = (e) => {
+    setFormData({ ...formData, main_image: e.target.files[0] });
+  };
+  const handleImagesChange = (e) => {
+    const _images = formData.images;
+    _images.push(e.target.files[0]);
+    setFormData({ ...formData, images: _images });
   };
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
@@ -72,24 +104,26 @@ const ListProduct = () => {
           required
           id="main_image"
           name="main_image"
-          value={main_image}
-          onChange={(e) => handleChange(e)}
+          onChange={(e) => handleMainImageChange(e)}
         ></input>
       </div>
       <label htmlFor={`image`}>Images</label>
-      {[...Array(imageFieldCount).keys()].map((i) => (
-        <div>
+      {[...Array(imageFieldsCount).keys()].map((i) => (
+        <div key={i}>
           <input
             type="file"
-            required
             id={`image${i}`}
             name={`image${i}`}
-            value={images}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleImagesChange(e)}
           ></input>
+          <div onClick={remove}>
+            <Button text="Remove" size="sm"></Button>
+          </div>
         </div>
       ))}
-
+      <div onClick={handleAddNew}>
+        <Button text="Add New" size="sm"></Button>
+      </div>
       <button type="submit">Upload</button>
     </form>
   );

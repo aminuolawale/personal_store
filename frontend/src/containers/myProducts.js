@@ -7,7 +7,7 @@ const MyProducts = () => {
   return (
     <div className="myProducts">
       <div className="myProducts__actions">
-        <Link to="/upload_product">
+        <Link to="/list_product">
           <Button text="UPLOAD PRODUCT" size="mid"></Button>
         </Link>
       </div>
