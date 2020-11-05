@@ -8,15 +8,18 @@ const ProductDetail = (props) => {
   const [productImages, setProductImages] = useState([]);
   const productId = props.match.params.id;
   const url = `http://localhost:8000/api/public_products/${productId}`;
-  useEffect(async () => {
-    try {
-      const response = await axios.get(url);
-      const data = response.data;
-      setProduct(data);
-    } catch (err) {
-      console.log(err.message);
-    }
-  }, [productId]);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await axios.get(url);
+        const data = response.data;
+        setProduct(data);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    getData();
+  }, [productId, url]);
 
   useEffect(() => {
     setProductImages(product ? [product.main_image, ...product.images] : []);
@@ -32,7 +35,11 @@ const ProductDetail = (props) => {
   return product ? (
     <div className="productDetail">
       <div className="productDetail__left">
-        <img className="productDetail__left__main" src={selectedImage}></img>
+        <img
+          className="productDetail__left__main"
+          src={selectedImage}
+          alt="main "
+        ></img>
         <div className="productDetail__left__sub">
           {productImages.map((i) => (
             <img
@@ -40,6 +47,7 @@ const ProductDetail = (props) => {
               className="productDetail__left__sub__img"
               onClick={handleThumbClick}
               src={i}
+              alt="thumb"
             ></img>
           ))}
         </div>

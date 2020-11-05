@@ -12,6 +12,10 @@ const Signup = () => {
     phone: "",
     password: "",
     password2: "",
+    street: "",
+    city: "",
+    state: "",
+    country: "",
   });
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,7 +26,18 @@ const Signup = () => {
     dispatch(signup(formData));
   };
   const signedUp = useSelector((state) => state.auth.signedUp);
-  const { full_name, username, email, phone, password, password2 } = formData;
+  const {
+    full_name,
+    username,
+    email,
+    phone,
+    password,
+    password2,
+    street,
+    city,
+    state,
+    country,
+  } = formData;
   return signedUp ? (
     <Redirect to="/login"></Redirect>
   ) : (
@@ -90,6 +105,50 @@ const Signup = () => {
           id="password2"
           name="password2"
           value={password2}
+          onChange={(e) => handleChange(e)}
+        ></input>
+      </div>
+      <div>
+        <label htmlFor="street">Street</label>
+        <input
+          type="text"
+          required
+          id="street"
+          name="street"
+          value={street}
+          onChange={(e) => handleChange(e)}
+        ></input>
+      </div>
+      <div>
+        <label htmlFor="city">City</label>
+        <input
+          type="text"
+          required
+          id="city"
+          name="city"
+          value={city}
+          onChange={(e) => handleChange(e)}
+        ></input>
+      </div>
+      <div>
+        <label htmlFor="state">State</label>
+        <input
+          type="text"
+          required
+          id="state"
+          name="state"
+          value={state}
+          onChange={(e) => handleChange(e)}
+        ></input>
+      </div>
+      <div>
+        <label htmlFor="country">Country</label>
+        <input
+          type="text"
+          required
+          id="country"
+          name="country"
+          value={country}
           onChange={(e) => handleChange(e)}
         ></input>
       </div>

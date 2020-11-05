@@ -7,6 +7,6 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunkMiddleware))
 );
-const unsubscribe = store.subscribe(() => {});
+store.subscribe(() => {});
 
 export default store;

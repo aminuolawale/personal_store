@@ -1,7 +1,9 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import products from "./containers/products";
+import myProducts from "./containers/myProducts";
 import { Provider } from "react-redux";
 import Layout from "./containers/layout";
+import PrivateRoute from "./components/PrivateRoute";
 import home from "./containers/home";
 import signup from "./containers/signup";
 import login from "./containers/login";
@@ -16,17 +18,25 @@ function App() {
       <BrowserRouter>
         <Layout>
           <Switch>
+            <Route exact path="/signup" component={signup}></Route>
+            <Route exact path="/login" component={login}></Route>
             <Route exact path="/public_products" component={products}></Route>
-            <Route exact path="/my_products" component={products}></Route>
+            <PrivateRoute
+              exact
+              path="/account"
+              component={account}
+            ></PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/my_products"
+              component={myProducts}
+            ></PrivateRoute>
             <Route
               exact
               path="/public_products/:id"
               component={productDetail}
             ></Route>
             <Route exact path="/" component={home}></Route>
-            <Route exact path="/signup" component={signup}></Route>
-            <Route exact path="/login" component={login}></Route>
-            <Route exact path="/account" component={account}></Route>
             <Route exact path="/list_product" component={listProduct}></Route>
           </Switch>
         </Layout>

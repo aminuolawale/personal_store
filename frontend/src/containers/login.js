@@ -21,7 +21,7 @@ const Login = () => {
     console.log(formData);
     dispatch(login(formData));
   };
-  const { email, phone, password } = formData;
+  const { email, password } = formData;
   return loggedIn ? (
     <Redirect to="/"></Redirect>
   ) : (

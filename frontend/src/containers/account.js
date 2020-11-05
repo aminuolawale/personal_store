@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import Moment from "react-moment";
 import { useSelector, useDispatch } from "react-redux";
 import { getAccount } from "../redux/auth/actions";
-import Products from "../containers/products";
+import Products from "../components/Products";
 import { fetchMyProducts } from "../redux/myProducts/actions";
-import Product from "../components/Product";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
@@ -15,7 +14,7 @@ const Account = () => {
   console.log(account);
   useEffect(() => {
     dispatch(getAccount());
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
     setAccount(accountInfo);
   }, [accountInfo]);
@@ -24,7 +23,7 @@ const Account = () => {
       <div className="account__main">
         <div className="account__main__info">
           <div className="account__main__info__image">
-            <img src={account.profile_picture}></img>
+            <img src={account.profile_picture} alt={account.username}></img>
           </div>
           <p className="account__main__info__text--main">{account.username}</p>
           <p className="account__main__info__text">{account.email}</p>

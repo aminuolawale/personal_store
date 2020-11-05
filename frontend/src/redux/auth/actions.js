@@ -81,6 +81,15 @@ const signup = (requestData) => {
     const url = "http://localhost:8000/api/users/signup/";
     try {
       dispatch(signupRequest());
+      requestData = {
+        ...requestData,
+        address: {
+          street: requestData.street,
+          city: requestData.city,
+          state: requestData.state,
+          country: requestData.country,
+        },
+      };
       const response = await axios.post(url, requestData, {
         headers: { "Content-Type": "application/json" },
       });
