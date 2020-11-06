@@ -11,6 +11,7 @@ const initialState = {
   loading: false,
   error: "",
   products: [],
+  productListed: false,
 };
 
 const myProductsReducer = (state = initialState, action) => {
@@ -19,12 +20,14 @@ const myProductsReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        productListed: false,
       };
     case FETCH_MY_PRODUCTS_SUCCESS:
       return {
         ...state,
         loading: false,
         products: action.payload,
+        productListed: false,
         error: "",
       };
     case FETCH_MY_PRODUCTS_FAILURE:
@@ -33,24 +36,26 @@ const myProductsReducer = (state = initialState, action) => {
         loading: false,
         products: [],
         error: action.payload,
+        productListed: false,
       };
     case LIST_PRODUCT_REQUEST:
       return {
         ...state,
         loading: true,
+        productListed: false,
       };
     case LIST_PRODUCT_SUCCESS:
       return {
         ...state,
         loading: false,
-        products: action.payload,
+        productListed: true,
         error: "",
       };
     case LIST_PRODUCT_FAILURE:
       return {
         ...state,
         loading: false,
-        products: [],
+        productListed: false,
         error: action.payload,
       };
 

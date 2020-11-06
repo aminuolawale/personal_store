@@ -14,7 +14,12 @@ const Products = ({ limit, fetchProducts, view }) => {
   );
 
   useEffect(() => {
-    productsData = limit ? productsData.splice(0, limit) : productsData;
+    console.log("this is the product data", productsData);
+    productsData = productsData
+      ? limit
+        ? productsData.splice(0, limit)
+        : productsData
+      : [];
     setProducts(productsData);
   }, [productsData]);
   const productsDisplay = products.map((product) => (

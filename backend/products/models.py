@@ -22,7 +22,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.FloatField()
     stock = models.IntegerField()
-    categories = models.CharField(
+    category = models.CharField(
         max_length=100, choices=Category.choices, default=Category.OTHERS)
     main_image = models.CharField(max_length=255, blank=True)
     images = ArrayField(models.CharField(max_length=255),

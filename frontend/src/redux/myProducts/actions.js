@@ -38,7 +38,6 @@ const listProductRequest = () => {
 const listProductSuccess = (product) => {
   return {
     type: LIST_PRODUCT_SUCCESS,
-    payload: product,
   };
 };
 

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
 import { uploadProduct } from "../redux/myProducts/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+import imageUploader from "../helpers/imageUpload";
+
 const ListProduct = () => {
   const dispatch = useDispatch();
+  const productListed = useSelector((state) => state.products.productListed);
+  console.log("product listed?", productListed);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -25,6 +30,7 @@ const ListProduct = () => {
       let r = d0.split(":")[1];
       r = r.split(";")[0];
       console.log(r);
+      console.log("=====", imageUploader(formData.main_image));
       formData["main_image"] = { type: r, data: d1 };
       dispatch(uploadProduct(formData));
     };
@@ -51,7 +57,9 @@ const ListProduct = () => {
     _images.push(e.target.files[0]);
     setFormData({ ...formData, images: _images });
   };
-  return (
+  return productListed ? (
+    <Redirect to="/my_products"></Redirect>
+  ) : (
     <form onSubmit={(e) => handleSubmit(e)}>
       <div>
         <label htmlFor="name">Name</label>
